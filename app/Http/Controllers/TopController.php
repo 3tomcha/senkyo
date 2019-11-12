@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Election;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Profile;
 use App\Election;
-use App\Http\Controllers\Controller;
 
 class TopController extends Controller
 {
@@ -14,13 +12,9 @@ class TopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $profiles = Profile::all();
-        // dd($profiles);
-        $election = Election::find($request->id);
-
-        return view('election.top', ['profiles' => $profiles, 'election' => $election]);
+        return view('top', ['elections' => Election::all()]);
     }
 
     /**
@@ -30,6 +24,7 @@ class TopController extends Controller
      */
     public function create()
     {
+        return view('create');
     }
 
     /**
@@ -41,6 +36,9 @@ class TopController extends Controller
      */
     public function store(Request $request)
     {
+        $election = new Election();
+        $election->title = $request->title;
+        $election->save();
     }
 
     /**
