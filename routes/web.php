@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
+
+Auth::routes();
+Route::resource('admin', 'AdminController');
+Route::resource('election', 'Election/TopController');
