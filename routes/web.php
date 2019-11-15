@@ -16,6 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::resource('admin', 'AdminController');
-Route::resource('election', 'Election\TopController');
+Route::resource('profile', 'ProfileController');
+Route::resource('election', 'ElectionController');
 Route::resource('/', 'TopController');

@@ -5,11 +5,12 @@
     </head>
     <body>
         <div class="container row mx-auto">
-            <form action="/admin" method="POST" name="profile">
+            <form action="/profile" method="POST" name="profile">
             @csrf
             <input type="hidden" name="column1"/>
             <input type="text" id="column1_key"/>
             <input type="text" id="column1_val"/>
+            <input type="hidden" name="election_id" value="{{$election_id}}"/>
             <input type="submit" id="submit" value="作成"/>
             </form>
         </div>

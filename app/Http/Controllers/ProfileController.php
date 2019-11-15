@@ -1,26 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Election;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Profile;
-use App\Election;
-use App\Http\Controllers\Controller;
 
-class TopController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $profiles = Profile::all();
-        // dd($profiles);
-        $election = Election::find($request->id);
-
-        return view('election.top', ['profiles' => $profiles, 'election' => $election]);
     }
 
     /**
@@ -28,8 +21,10 @@ class TopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    //  /profile/create?id=1 でアクセスする
+    public function create(Request $request)
     {
+        return view('profile.create', ['election_id' => $request->id]);
     }
 
     /**
@@ -41,6 +36,12 @@ class TopController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $profile = new Profile();
+        $requests = $request->all();
+        unset($requests['_token']);
+        $profile->fill($requests);
+        $profile->save();
     }
 
     /**
